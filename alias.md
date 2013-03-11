@@ -2,39 +2,13 @@
 
 **namespace** - Reborn\Cores
 
-Please write something for this class Ko Nyan Lynn Htut
-
-##How to use Alias Class
-
-###coreClassAlias()
-
-This method is call when application started. But not allow to call after one time.
+Register the class alias. You can use your class (external of Reborn's Cores) to alies use this method.
 
 **Code Sample**
 
-	$alias = new \Reborn\Cores\Alias();
-	$alias->coreClassAlias();
-	
-	
-###aliasRegister()
+	// If you want to use Products\Libs\Shopper to Shopper
+	Alias::aliasRegister(array('Shopper' => 'Products\Libs\Shopper'));
 
-Register the class alias. You can use your class (enternal of Reborn's Cores) to alies use this method.
-
-* *(Array)* Array data for class alias
-
-**Code Sample**
-
-	$alias = new \Reborn\Cores\Alias();
-	$alias->aliasRegister();
-
-
-
-
-
-
-
-
-
-
-
-
+	// Ok, Shopper class is aliased now
+	// You can call the Products\Libs\Shopper by Shopper
+	Shopper::calculate();

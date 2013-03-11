@@ -1,9 +1,5 @@
 #Registry class for RebornCMS
 
-**namespace** - Reborn\Cores
-
-Please Write someting for this class Ko Nyan Lynn Htut
-
 ##How to use Registry class
 
 ###set()
