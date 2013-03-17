@@ -2,9 +2,9 @@
 
 ##How to use Event class
 
-###add()
+###on()
 
-Add(Register) the Event.
+Add(Register) the Event (callback function). This event will be invoked whenever event is call(fire). You should use event name with prefix (may be module name) to prevent event conflict.
 
 * *(String)* Event name (eg: blog_post_create)
 
@@ -12,60 +12,46 @@ Add(Register) the Event.
 
 **Add the event**
 
-	\Event::add('blog_post_create', function(){
+	Event::on('blog_post_create', function(){
 			echo 'This is blog event'
 		});
 
-### addBefore()
-Add callback function for the given event before running. This is same with controller before method().
-
-* *(String)* Event name (eg: blog_post_create)
-
-* *(Closure)* Callback function name.
-
-**Add Before this event**
-
-	\Event::addBefore('blog_post_create', function(){
-			echo '---- This is prepare process for event blog_post_create ----';
-		});
-
-### addAfter()
-Add callback function for the given event after running. This is same with controller after method().
-
-**Add After this event**
-
-	\Event::addAfter('blog_post_create', function(){
-			echo '---- This is shutdown process for event blog_post_create ----';
-		});
-
-
 ###call()
 
-Call(Trigger) the event.
+Call(Trigger) the event when event is already register(Event::on).
 
 * *(String)* Name of event
 
-* *(array)* Data array for callback event *(optional)*
+* *(array)* Parameter array for callback event *(optional)*
 
 **Calling the event**
 
 	//return void
-	\Event::call('blog_post_create', array());
+	Event::call('blog_post_create');
+
+	// How to Call with parameter
+	Event::on('blog_post_logger', function($id, $title, $author) {
+			Log::info('#id-'.$id.' Blog "'.$title.'" is create by '.$author.'!');
+		});
+	$post = array('id' => 123, 'title' => 'My Blog Post', 'author' => 'Lynn');
+	Event::call('blog_post_create', $post);
+	// Log message : '#id-123 Blog "My Blog Post" is create by Lynn!'
 
 
 ###has()
 
-Check the given event name is have or not
+Check the given event name is have or not.
+Result will return by boolean.
 
 * *(String)* Name of event
 
 **Checking the event**
 
 	//return true if the event you find is exist and return false if not
-	\Event::has('blog_post_create');
+	Event::has('blog_post_create');
 
 
-###remove()
+###off()
 
 Remove(UnRegister) the given event name.
 
@@ -73,20 +59,11 @@ Remove(UnRegister) the given event name.
 
 **Removing the event**
 
-	\Event::remove('blog_post_create');
+	Event::off('blog_post_create');
 
-### removeBefore()
-Remove the given event's before callbacks.
+### clear()
+Clear the all events from application.
 
-* *(String)* Event name (eg: blog_post_create)
+**Clear the all event**
 
-**Remove Before this event**
-
-	\Event::removeBefore('blog_post_create');
-
-### removeAfter()
-Remove the given event's after callbacks.
-
-**Remove After this event**
-
-	\Event::removeAfter('blog_post_create');
+	Event::clear();
