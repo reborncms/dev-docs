@@ -1,12 +1,7 @@
 #Routing for Reborn CMS
 
-##How to add route for your Module?
+Router is control of any request at Reborn CMS. Router check the module, controller, action, params from request url. And then call the right controller, action with params.
 
-Reborn's route is require 3 parameter.
-
-* First param is route name.
-* Second param is route pattern.
-* Third param is route map.
 
 ##Where I can add route source code?
 
@@ -20,30 +15,39 @@ Example : Route file path for Addon Module.
 
 	..\reborn\content\modules\ModuleName\routes.php;
 
+
+
 **Defining A Route**
+* @param string $name Route name
+* @param string $path Route uri path
+* @param string $file Action string(Module\Controller::action) [eg: Pages\Pages::index]
+* @param string $method HTTP method (optional)
 
-	// url is http://example.com/artice/create
-	Route::add('article.create', 'artice/create', array(
-			'module' => 'articel',
-			'controller' => 'article',
-			'action' => 'create',
-		));
+	// url is http://example.com/login
+	Route::add('login', 'login', 'User\User::login');
+	// or
+	// route for http://example.com/login with POST method
+	Route::add('login', 'login', 'User\User::login', 'POST');
 
-**Defining A Route with Closure**
+**Defining A Route for GET method**
 
 	// url is http://example.com/pages/1234
-	Route::add('pagesbyID', 'pages/type/{:id}', function($id){
-		echo 'Page bi ID '.$id;
-	});
+	Route::get('pages_by_id', 'pages/{:id}', 'Pages\Pages::getBy');
 
-**Defining A Route parameter by type**
+**Defining A Route for POST method**
 
-	// url is http://example.com/pages/2013/01
-	Route::add('article.archive', 'article/{int:year}/{int:month}', array(
-			'module' => 'articel',
-			'controller' => 'article',
-			'action' => 'archive',
-		));
+	// url is http://example.com/pages/create
+	Route::post('pages_create', 'pages/create', 'Pages\Pages::create');
+
+**Defining A Route for PUT method**
+
+	// url is http://example.com/pages/123 with PUT method
+	Route::put('pages_edit', 'pages/{int:id}', 'Pages\Pages::edit');
+
+**Defining A Route for DELETE method**
+
+	// url is http://example.com/pages/123 with DELETE method
+	Route::put('pages_delete', 'pages/{int:id}', 'Pages\Pages::delete');
 
 **Supproted parameter type are**
 
