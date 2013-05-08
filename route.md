@@ -42,17 +42,29 @@ Example : Route file path for Addon Module.
 **Defining A Route for PUT method**
 
 	// url is http://example.com/pages/123 with PUT method
-	Route::put('pages_edit', 'pages/{int:id}', 'Pages\Pages::edit');
+	Route::put('pages_edit', 'pages/{:int}', 'Pages\Pages::edit');
 
 **Defining A Route for DELETE method**
 
 	// url is http://example.com/pages/123 with DELETE method
-	Route::put('pages_delete', 'pages/{int:id}', 'Pages\Pages::delete');
+	Route::delete('pages_delete', 'pages/{:int}', 'Pages\Pages::delete');
 
 **Supproted parameter type are**
 
-	{int:key} // Key is Integer value
-	{alpha:key} // Key is Alpha, '-', '_' and '.'
-	{alnum:key} // Key is Alpha, numeric, '-', '_' and '.'
+	{:any}
+	{:int} // Key is Numeric value
+	{:alpha} // Key is Alpha, '-', '_' and '.'
+	{:alnum} // Key is Alpha, numeric, '-', '_' and '.'
+	/{:?} // This key part is optional
+	{:?} // This key part is optional
 
+**Diffrent between /{:?} and {:?}**
+
+	//Equal with http://host.com/blog/my-first-post/
+	//Equal with http://host.com/blog
+	Route::add('sample', 'blog/{:?}', 'Blog\Blog::view');
+
+	//Equal with http://host.com/my-first-post/
+	//Equal with http://host.com/blog/my-first-post
+	Route::add('sample', '{:?}', 'Blog\Blog::view');
 
