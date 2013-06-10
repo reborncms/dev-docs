@@ -1,4 +1,4 @@
-#Security Class for RebornCMS
+#Form Class for RebornCMS
 
 **namespace** - Reborn\Form
 
@@ -335,7 +335,7 @@ Form Textarea
     Form::textarea('textarea_name','Type your text here');
 
 
-###select($name, $options, $multisel = false, $defaultSel = null, attrs = array())
+###select($name, $options, $defaultSel = null, attrs = array())
 
 Form Select
 
