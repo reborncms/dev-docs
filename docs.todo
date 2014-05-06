@@ -1,7 +1,7 @@
 Module Development
     ☐ Authentication
     ☐ Assets
-    ☐ Cache
+    ✔ Cache @done (14-05-06 18:43)
     ☐ Config
     ☐ Event
     ☐ File System
@@ -29,7 +29,7 @@ Module Development
     Utilities
       ☐ Flash
       ☐ Hash
-      ☐ Html
+      ✔ Html @done (14-03-10 16:18)
       ✔ Str @done (14-03-10 13:47)
     Widget
       ☐ Widget Class
@@ -40,6 +40,10 @@ Theme Development
    ☐ Theme syntaxs
 Extra
   ✔ Helper @done (14-03-10 11:04)
+  ☐ Command Line Tool
+
+ ✔ Get Offline Docs @done (14-03-10 16:57)
+ ☐ Reborn Installation
 
 
 
